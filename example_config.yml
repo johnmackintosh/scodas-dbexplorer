@@ -1,0 +1,40 @@
+con:
+  Server: servername
+  Database: db
+  Trusted_Connection: 'True'
+  Port: 1433
+
+
+tablename:
+- table_1
+- table_2
+- table_3
+
+
+schema:
+- schema_name
+
+date_vars:
+- date_1
+- date_2
+- date_3
+
+col_vars:
+  tbl1: 
+  - date_1
+  - col1
+  - col2
+  - col3
+
+  tbl2:
+  - date_2
+  - col4
+  - col5
+  - col6
+
+  tbl3:
+  - date_3
+  - col7
+  - col8
+  - col9
+
