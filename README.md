@@ -1,5 +1,5 @@
 # scodas-dbexplorer
-code for shiny app to loop over database tables and monitor values,  presented at SCODAS meeting 2022-06-14
+code for SQL queries to loop over database tables,  and shiny app to display / monitor values,  presented at SCODAS meeting 2022-06-14
 
 
 see these blog posts for further info
