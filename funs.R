@@ -1,5 +1,7 @@
 # needs some tidying up, but provided you have the necessary packages from render_app_data.R, these should work
 
+#  back end querying
+
 convert_dates <- function(.data, datecol) {
   res <- .data %>% 
     mutate({{datecol}} := lubridate::date({{datecol}})) %>% 
@@ -28,6 +30,10 @@ get_cols_to_plot <- function(df) {
   cols_to_plot <- setdiff(cols_of_interest, names_to_drop)
   return(cols_to_plot)
 }
+
+
+
+ # shiny app
 
 count_plotter <- function(DT, x, nweeks = 13){
   p <- DT[column == x, .N, .(week_starting, value)] %>% 
