@@ -18,6 +18,8 @@ source("funs.R")
 
 DT <- readRDS("sourcedata.RDS")
 
+meta <- readRDS("metadata.RDS")
+
 start_date <- as.Date(min(DT$week_starting))
 WTD <- as.Date(max(DT$week_starting))
 last_week <- WTD - 7
@@ -29,13 +31,19 @@ nweeks <- 13 # for chart and other titles
 
 ui <- dashboardPage(
   dashboardHeader(title = "COVID-19 Data Quality"),
-  dashboardSidebar(sidebarMenu(
+  dashboardSidebar(
+    sidebarMenu(
     menuItem("Dashboard", tabName = "dashboard", icon = icon("stats",lib = 'glyphicon')),
+    menuItem("Metadata", tabName = "metadata", icon = icon("stats",lib = 'glyphicon')),
     selectInput("tablename", "Source table", choices = unique(DT$tablename)),
     selectInput("column", "Column", choices = NULL),
     selectInput("value", "Value", choices = NULL)
-  )),
+  )
+  ), # end of dashboardSidebar
+  
   dashboardBody(
+    tabItems(
+      tabItem("dashboard", 
     # first row
     fluidRow(
       valueBoxOutput("value1")
@@ -52,11 +60,21 @@ ui <- dashboardPage(
              box(title = uiOutput("placeholder"),
                  width = 12,
                  reactableOutput("table", height = 700)))
-  ),
+      ),
   
   title = "COVID-19 Data Quality Explorer"
-)
-)
+      ) , # end of tabItem 1, 
+  
+  # delete the comma in line 66 if removing tabItem2 below:
+  
+  tabItem("metadata", 
+          reactableOutput("table2")) # end of tabItem2
+  
+    ) #end of tabItems
+  
+) # end of dashboardBody
+) # end of dashboardPage
+
 
 server <- function(input, output, session) {
   tablename <- reactive({
@@ -205,6 +223,41 @@ server <- function(input, output, session) {
           " this week to date (w/b ", WTD, ")" )
     
   })
+  
+  
+  # output metadata table
+  output$table2 <- renderReactable({
+    req(input$tablename)
+    req(input$column) #leave this requirement for now in case we decide to 
+    # filter to current row and move table to main dashboard
+    
+ meta %>%
+      select(tablename, column, Description) %>%
+      filter(tablename == input$tablename) %>% # removed filter for column value
+      reactable(.,
+                defaultSorted = list(column = "asc"), 
+                highlight = TRUE,
+                searchable = FALSE,
+                #pageSizeOptions = c(25, 50, 100), 
+                defaultPageSize = 25,
+                resizable = TRUE, 
+                wrap = TRUE,
+                bordered = TRUE,
+                fullWidth = TRUE,
+                columns = list(
+                  tablename = colDef(
+                    show = FALSE, 
+                    maxWidth = 75),
+                  column = colDef(
+                    show = TRUE, 
+                    minWidth = 250,
+                    maxWidth = 250
+                  )
+                )
+      ) 
+  })
+  
+  
   
   # stop app when browser is closed:
   session$onSessionEnded(stopApp)
