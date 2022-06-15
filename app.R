@@ -64,9 +64,9 @@ server <- function(input, output, session) {
   })
   
   observeEvent(tablename(), {
-    choices <- unique(tablename()$column)
+    choices <- sort(levels(factor(unique(tablename()$column))))
     freezeReactiveValue(input, "column")
-    updateSelectInput(inputId = "column", choices = levels(factor(choices)))
+    updateSelectInput(inputId = "column", choices = choices)
   })
   
   column <- reactive({
