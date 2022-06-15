@@ -4,7 +4,11 @@ code for SQL queries to loop over database tables,  and shiny app to display / m
 N.B. - there are 2 versions of the app.  
 The version demonstrated, which has one dashboard tab, is in the main branch.  
 
-Use the app-with-metadata branch for revised layout, featuring an additional tab and table which displays metadata about the current selected table
+Use the app-with-metadata branch for revised layout, featuring an additional tab and table which displays metadata about the current selected table.  
+
+See the screenshot below to navigate to the app-with-metadata branch: 
+
+![image](https://user-images.githubusercontent.com/3278367/173827203-3cca0396-6c01-466d-bb2a-741760e13fb6.png)
 
 
 see these blog posts for further info
