@@ -14,17 +14,17 @@ See the screenshot below to navigate to the app-with-metadata branch:
 see these blog posts for further info
 
 # interpolation - what is it?
-https://www.johnmackintosh.net/blog/2021-10-20-interpolation/  
+https://johnmackintosh.com/archive/interpolation/
 
 # flexible SQL queries:
-https://www.johnmackintosh.net/blog/2022-04-06-sql-schema-query/  
+https://johnmackintosh.com/archive/sql-schema-query/
 
 # the code you need for the back end of the app:
-https://www.johnmackintosh.net/blog/2022-04-28-purrr-sql/  
+https://johnmackintosh.com/archive/purrr-sql/
 
 
 # opinion - keep your SQL outside your R script
-https://www.johnmackintosh.net/blog/2022-02-08-separate-sql/  
+https://johnmackintosh.com/archive/separate-sql/ 
 
 
 
